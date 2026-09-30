@@ -1,0 +1,47 @@
+name: Build APK
+
+# 点一下这里就能出 APK：仓库页面 → Actions → Build APK → Run workflow
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 取回代码
+        uses: actions/checkout@v4
+
+      - name: 安装 Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: 安装 Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: 生成自签名证书
+        run: |
+          keytool -genkeypair -v \
+            -keystore app/selfsign.jks \
+            -alias huanar \
+            -keyalg RSA -keysize 2048 -validity 10950 \
+            -storepass huanar123 -keypass huanar123 \
+            -dname "CN=HuaNaErLe, OU=Self, O=Self, L=CN, S=CN, C=CN"
+
+      - name: 安装 Gradle
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: '8.7'
+
+      - name: 编译 APK
+        run: gradle assembleRelease --no-daemon --stacktrace
+
+      - name: 把 APK 放到可下载的地方
+        uses: actions/upload-artifact@v4
+        with:
+          name: 花哪儿了-APK
+          path: app/build/outputs/apk/release/*.apk
+          if-no-files-found: error

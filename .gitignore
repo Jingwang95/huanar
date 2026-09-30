@@ -1,0 +1,11 @@
+# 忽略编译产物
+.gradle/
+build/
+app/build/
+local.properties
+*.iml
+.idea/
+.DS_Store
+
+# 自签名证书由编译流程自动生成，不要提交
+app/selfsign.jks
