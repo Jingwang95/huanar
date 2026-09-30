@@ -1,5 +1,50 @@
 name: Build APK
 
+# Cloud build: pushes to main trigger it automatically.
+# You can also run it by hand: Actions -> Build APK -> Run workflow
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Generate self-signed keystore
+        run: |
+          keytool -genkeypair -v -keystore app/selfsign.jks -alias huanar -keyalg RSA -keysize 2048 -validity 10950 -storepass huanar123 -keypass huanar123 -dname "CN=HuaNaErLe, OU=Self, O=Self, L=CN, S=CN, C=CN"
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: '8.7'
+
+      - name: Build release APK
+        run: gradle assembleRelease --no-daemon --stacktrace
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: huanaerle-apk
+          path: app/build/outputs/apk/release/*.apk
+          if-no-files-found: error
+name: Build APK
+
 # 鐐逛竴涓嬭繖閲屽氨鑳藉嚭 APK锛氫粨搴撻〉闈?鈫?Actions 鈫?Build APK 鈫?Run workflow
 on:
   push:
