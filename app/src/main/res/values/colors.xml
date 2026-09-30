@@ -1,0 +1,14 @@
+<resources>
+    <color name="pri">#2F6BFF</color>
+    <color name="pri_dark">#1D4FD8</color>
+    <color name="pri_soft">#EAF0FF</color>
+    <color name="bg">#F4F6FB</color>
+    <color name="card">#FFFFFF</color>
+    <color name="txt">#12151C</color>
+    <color name="dim">#6B7280</color>
+    <color name="faint">#9AA3B2</color>
+    <color name="line">#E6E9F0</color>
+    <color name="bad">#E5484D</color>
+    <color name="ok">#12A150</color>
+    <color name="warn">#F5A524</color>
+</resources>

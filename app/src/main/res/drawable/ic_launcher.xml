@@ -1,0 +1,17 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- 蓝色圆底 -->
+    <path
+        android:fillColor="#2F6BFF"
+        android:pathData="M54,4 A50,50 0 1,1 53.99,4 Z" />
+    <!-- 白色 ¥ 符号（横杠 + 两条斜竖） -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M51,26 h6 v13 h7 v6 h-7 v3 h7 v6 h-7 v22 h-6 v-22 h-7 v-6 h7 v-3 h-7 v-6 h7 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M38,26 h6 l10,16 l10,-16 h6 l-13,21 h-6 Z" />
+</vector>

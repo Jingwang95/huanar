@@ -1,0 +1,28 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Theme.HuaNaErLe" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/pri</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="android:colorBackground">@color/bg</item>
+        <item name="android:textColorPrimary">@color/txt</item>
+        <item name="android:statusBarColor">@color/card</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+    <!-- 分类小窗：透明背景 + 悬浮在微信之上 -->
+    <style name="Theme.HuaNaErLe.Overlay" parent="Theme.Material3.Light.NoActionBar">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowAnimationStyle">@style/Anim.Overlay</item>
+    </style>
+
+    <style name="Anim.Overlay" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/overlay_in</item>
+        <item name="android:activityOpenExitAnimation">@android:anim/fade_out</item>
+        <item name="android:activityCloseEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:activityCloseExitAnimation">@anim/overlay_out</item>
+    </style>
+</resources>
